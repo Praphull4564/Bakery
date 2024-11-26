@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Welcome to Golden Bakery</h2>
+<p>Your one-stop solution for managing bakery products.</p>
+
+<!-- Link to Admin Panel -->
+<a href="{{ url_for('admin_login') }}" class="admin-link">Go to Admin Panel</a>
+
+<!-- Link to Customer Menu -->
+<a href="{{ url_for('menu') }}" class="menu-link">View Customer Menu</a>
+{% endblock %}

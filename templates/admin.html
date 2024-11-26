@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <h1>Admin Panel</h1>
+
+    <h2>Product List</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr data-product-id="{{ product['product_id'] }}">
+                <td>{{ product['product_id'] }}</td>
+                <td>{{ product['name'] }}</td>
+                <td>{{ product['category'] }}</td>
+                <td>{{ product['price'] }}</td>
+                <td>{{ product['stock'] }}</td>
+                <td>{{ product['description'] }}</td>
+                <td>
+                    <!-- Delete button -->
+                    <form action="{{ url_for('delete_product_route', product_id=product['product_id']) }}" method="post" class="delete-form" style="display:inline;">
+                        <input type="hidden" name="product_id" value="{{ product['product_id'] }}">
+                        <input type="submit" class="delete-button" value="Delete" onclick="deleteProduct(event, '{{ product['product_id'] }}')">
+                    </form>
+                    <!-- Update button -->
+                    <button type="button" class="update-button" onclick="openUpdateForm('{{ product['product_id'] }}')">Update</button>
+                </td>
+            </tr>
+            
+            <!-- Hidden Update Form -->
+            <tr id="updateForm_{{ product['product_id'] }}" style="display:none;">
+                <td colspan="7">
+                    <form action="{{ url_for('update_product_route', product_id=product['product_id']) }}" method="post">
+                        <label for="price_{{ product['product_id'] }}">Price:</label>
+                        <input type="number" id="price_{{ product['product_id'] }}" name="price" value="{{ product['price'] }}" required>
+                        
+                        <label for="stock_{{ product['product_id'] }}">Stock:</label>
+                        <input type="number" id="stock_{{ product['product_id'] }}" name="stock" value="{{ product['stock'] }}" required>
+                        
+                        <label for="description_{{ product['product_id'] }}">Description:</label>
+                        <input type="text" id="description_{{ product['product_id'] }}" name="description" value="{{ product['description'] }}" required>
+                        
+                        <button type="submit">Save</button>
+                        <button type="button" onclick="closeUpdateForm('{{ product['product_id'] }}')">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Add Product</h2>
+    <form action="{{ url_for('add_product_route') }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        <br>
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" required>
+        <br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        <br>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <script>
+        function openUpdateForm(productId) {
+            document.getElementById(`updateForm_${productId}`).style.display = "table-row";
+        }
+
+        function closeUpdateForm(productId) {
+            document.getElementById(`updateForm_${productId}`).style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

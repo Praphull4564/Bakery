@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Menu</h2>
+
+<form action="{{ url_for('process_order') }}" method="post">
+    <!-- Customer Details Section -->
+    <div class="customer-info">
+        <label for="customer_name">Name:</label>
+        <input type="text" id="customer_name" name="customer_name" required>
+
+        <label for="customer_phone">Phone Number:</label>
+        <input type="text" id="customer_phone" name="customer_phone" required>
+    </div>
+
+    {% for category in categories %}
+    <h3>{{ category }}</h3>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        {% for product in products if product.category == category %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>${{ product.price }}</td>
+            <td>
+                <input type="number" name="quantity_{{ product.product_id }}" min="0" value="0">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+    <button type="submit">Buy</button>
+</form>
+
+{% endblock %}
