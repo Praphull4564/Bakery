@@ -1,37 +1,87 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h2>Menu</h2>
+<div class="container">
+    
+    <form action="{{ url_for('process_order') }}" method="post">
+        <!-- Customer Details Section -->
+        <div class="customer-info">
+            <label for="customer_name">Your Name:</label>
+            <input type="text" id="customer_name" name="customer_name" placeholder="Enter your name" required>
+            
+            <label for="customer_phone">Phone Number:</label>
+            <input type="text" id="customer_phone" name="customer_phone" placeholder="Enter your phone number" required>
+        </div>
+        
+        <header>
+            <h2>Golden Bakery Menu</h2>
+        </header>
+    
+        <!-- Search Bar Section -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for a product...">
+        </div>
+        <!-- "No Results" Message -->
+        <div id="no-results-message" style="display: none;">
+            Currently not available in Golden Bakery.
+        </div>
 
-<form action="{{ url_for('process_order') }}" method="post">
-    <!-- Customer Details Section -->
-    <div class="customer-info">
-        <label for="customer_name">Name:</label>
-        <input type="text" id="customer_name" name="customer_name" required>
-
-        <label for="customer_phone">Phone Number:</label>
-        <input type="text" id="customer_phone" name="customer_phone" required>
-    </div>
-
-    {% for category in categories %}
-    <h3>{{ category }}</h3>
-    <table>
-        <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-        </tr>
-        {% for product in products if product.category == category %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>${{ product.price }}</td>
-            <td>
-                <input type="number" name="quantity_{{ product.product_id }}" min="0" value="0">
-            </td>
-        </tr>
+        <!-- Product Categories and Products -->
+        {% for category in categories %}
+        <h3 class="category-title">{{ category }}</h3>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products if product.category == category %}
+                <tr class="product-row">
+                    <td class="product-name">{{ product.name }}</td>
+                    <td>${{ product.price }}</td>
+                    <td>
+                        <input type="number" name="quantity_{{ product.product_id }}" min="0" value="0">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% endfor %}
-    </table>
-    {% endfor %}
-    <button type="submit">Buy</button>
-</form>
 
+        <!-- Submit Button -->
+        <button type="submit">Buy</button>
+    </form>
+</div>
+
+<!-- JavaScript for Search Functionality -->
+<script>
+    document.getElementById('search-bar').addEventListener('input', function () {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll('.product-row');
+        let hasVisibleProducts = false;
+
+        rows.forEach(row => {
+            const productName = row.querySelector('.product-name').textContent.toLowerCase();
+            if (productName.includes(filter)) {
+                row.style.display = '';
+                hasVisibleProducts = true;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        const categories = document.querySelectorAll('.category-title');
+        categories.forEach(category => {
+            const table = category.nextElementSibling;
+            const hasVisibleRows = [...table.querySelectorAll('.product-row')].some(row => row.style.display !== 'none');
+            category.style.display = hasVisibleRows ? '' : 'none';
+            table.style.display = hasVisibleRows ? '' : 'none';
+        });
+
+        // Display the "not available" message if no products match the search
+        document.getElementById('no-results-message').style.display = hasVisibleProducts ? 'none' : 'block';
+    });
+</script>
 {% endblock %}

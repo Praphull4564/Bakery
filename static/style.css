@@ -1,17 +1,78 @@
+/* General Reset and Basic Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #e9ecef; /* Light gray background for contrast */
+    background-color: #f8f9fa; /* Light gray background */
     margin: 0;
     padding: 20px;
+    color: #333; /* Neutral text color */
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
     background: white;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+/* Receipt Container */
+.receipt-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e8f4f8;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Title styling for the receipt */
+.receipt-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+/* Table Styling for the receipt */
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.receipt-table th, .receipt-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.receipt-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.receipt-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.receipt-table th, .receipt-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+/* Total Styling */
+.receipt-total {
+    text-align: right;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+
+h1, h2, h3 {
+    color: #007bff; /* Bootstrap blue for headings */
+    text-align: center;
 }
 
 header {
@@ -19,221 +80,240 @@ header {
     margin-bottom: 20px;
 }
 
-form {
+/* Search Container Styling */
+.search-container {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-form input, form textarea {
-    width: calc(100% - 22px);
+.search-container input {
+    width: 300px;
     padding: 10px;
-    margin: 5px 0;
     border: 1px solid #ced4da; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 20px;
+    font-size: 16px;
 }
 
-form button {
-    padding: 10px 15px;
-    background-color: #28a745; /* Bootstrap green */
-    color: white; /* White text for contrast */
-    border: none;
+/* Customer Info Section */
+.customer-info {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #e9ecef; /* Light gray section */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.customer-info label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.customer-info input {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ced4da;
     border-radius: 5px;
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
+    font-size: 16px;
 }
 
-form button:hover {
+/* Product Table Styling */
+.product-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-table th {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.product-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.product-table tr:nth-child(odd) {
+    background-color: #f8f9fa; /* Light gray background for odd rows */
+}
+
+.product-table tr:nth-child(even) {
+    background-color: #e9ecef; /* Slightly darker gray background for even rows */
+}
+
+.product-table input[type="number"],
+.product-table input[type="text"] {
+    width: 96%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Button Styling */
+button[type="submit"],
+.delete-button,
+.update-button {
+    width: 100%; /* Full width for better layout */
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button[type="submit"] {
+    background-color: #28a745; /* Green for action buttons */
+    color: white;
+    border: none;
+}
+
+button[type="submit"]:hover {
     background-color: #218838; /* Darker green on hover */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-th {
-    background-color: #007bff; /* Bootstrap blue */
-    color: white; /* White text for headers */
-}
-
-td {
-    background-color: #f8f9fa; /* Light gray for table rows */
-}
-
-td:hover {
-    background-color: #f1f1f1; /* Slightly darker gray on hover */
-}
-
-nav {
-    margin-bottom: 20px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #007bff; /* Bootstrap blue */
-    transition: color 0.3s; /* Smooth transition */
-}
-
-nav ul li a:hover {
-    color: #0056b3; /* Darker blue on hover */
-}
-
-.admin-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #17a2b8; /* Teal color */
-    color: white; /* White text */
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s; /* Smooth transition */
-}
-
-.admin-link:hover {
-    background-color: #138496; /* Darker teal on hover */
-}
-
-/* General button styles */
-button, input[type="submit"] {
-    padding: 10px 15px; /* Padding for button size */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    color: white; /* White text for contrast */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
-    width: 100px; /* Fixed width for equal size */
-}
-
-/* Delete button */
 .delete-button {
-    background-color: #dc3545; /* Bootstrap red for delete */
+    background-color: #dc3545; /* Red for delete */
+    color: white;
 }
 
 .delete-button:hover {
     background-color: #c82333; /* Darker red on hover */
 }
 
-/* Update button */
 .update-button {
     background-color: #007bff; /* Bootstrap blue for update */
+    color: white;
 }
 
 .update-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
-
-.login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.login-form .form-group {
-    margin-bottom: 15px;
-}
-
-.login-form label {
-    display: block;
-    margin-bottom: 5px;
+/* No Results Message */
+#no-results-message {
+    font-size: 18px;
     font-weight: bold;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.login-button:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: #dc3545;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 4px;
-}
-
-.menu-link {
-    display: inline-block;
+    color: #d4a017; /* Gold color for message */
+    text-align: center;
     margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #f5e90d; /* Yellow for menu link */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
 }
 
-.menu-link:hover {
-    background-color: #e00000; /* Darker yellow on hover */
-}
-.receipt-container {
-    background-color: #e0f7fa;
-    border-radius: 8px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 20px auto;
-    color: #006064;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.receipt-container h2 {
-    color: #004d40;
-}
-
-.receipt-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.receipt-container th, .receipt-container td {
-    padding: 8px;
+/* Category Title Styling */
+.category-title {
     text-align: left;
-    border-bottom: 1px solid #004d40;
+    font-size: 20px;
+    color: #007bff; /* Blue for category headings */
+    margin-top: 20px;
+    text-transform: capitalize;
 }
 
-.receipt-container th {
-    background-color: #004d40;
+/* Navigation Menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center-align the buttons */
+    gap: 10px; /* Add space between buttons */
+}
+
+nav ul li {
+    display: inline; /* Inline for horizontal layout */
+}
+
+nav ul li a {
+    display: inline-block;
+    padding: 10px 20px; /* Add padding for button size */
+    background-color: #007bff; /* Blue background for buttons */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size for readability */
+    transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+nav ul li a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Hidden Form (Update Form) */
+.hidden-form {
+    display: none;
+}
+
+.hidden-form input[type="number"],
+.hidden-form input[type="text"] {
+    width: 100%; /* Full width */
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Form container styling */
+.form-group {
+    margin-bottom: 20px; /* Increased space between form groups */
+}
+
+/* Input fields */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 5px;
+    font-size: 16px; /* Improved font size for readability */
+    background-color: #f8f9fa; /* Light background for input fields */
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Highlighted border on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Bold Label Styling */
+.bold-label {
+    font-weight: bold; /* Make the label text bold */
+    font-size: 18px; /* Increase font size of label */
+    margin-bottom: 5px; /* Slightly reduce spacing below labels */
+}
+
+/* Button Styling */
+.btn {
+    width: 100%; /* Full width button for better layout */
+    padding: 12px;
+    font-size: 18px; /* Increased font size for better readability */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap blue primary button */
     color: white;
 }
 
-.receipt-container h3 {
-    color: #004d40;
-    text-align: right;
-    margin-top: 20px;
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-lg {
+    font-size: 18px; /* Larger button size */
+}
+.no-results-message {
+    display: none;
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
 }

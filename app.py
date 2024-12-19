@@ -5,7 +5,7 @@ from db import add_product, get_all_products, add_predefined_products, delete_pr
 import mysql.connector
 
 app = Flask(__name__)
-app.secret_key = 'This is  a Yadav Bakery System'  
+app.secret_key = 'This is  a Golden Bakery System'  
 
 # Constants for admin credentials
 ADMIN_USERNAME = "Golden"
@@ -102,9 +102,9 @@ def add_product_route():
     name = request.form.get('name')
     category = request.form.get('category')
     price = float(request.form.get('price'))
-    stock = int(request.form.get('stock'))
+    # stock = int(request.form.get('stock'))
     description = request.form.get('description')
-    add_product(name, category, price, stock, description)
+    add_product(name, category, price, 100, description)
     return redirect(url_for('admin'))
 
 @app.route('/menu')
@@ -146,14 +146,15 @@ def process_order():
                     "price": float(product['price']),
                     "subtotal": subtotal
                 })
-
+            GST=0.12
         return render_template('receipt.html', receipt_details=receipt_details, total=total,
                                customer_name=customer_name, customer_phone=customer_phone,
-                               date_time=date_time)
+                               date_time=date_time,GST=GST)
     except Exception as e:
         return str(e), 500
 
 # Start the app
 if __name__ == '__main__':
     add_predefined_products()  # Adds predefined products to the database if necessary
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
+    

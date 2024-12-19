@@ -27,10 +27,10 @@ def add_product(name, category, price, stock, description):
     cursor = connection.cursor()
     query = """
         INSERT INTO products (name, category, price, stock, description)
-        VALUES (%s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s , %s)
     """
     try:
-        cursor.execute(query, (name, category, price, stock, description))
+        cursor.execute(query, (name, category, price, 100 , description))
         connection.commit()
     except Error as e:
         print(f"Error: {e}")
@@ -63,7 +63,7 @@ def add_predefined_products():
     ("Whole Wheat Bread", "Breads", 45.00, 30, "Healthy whole wheat bread"),
     ("Sourdough Bread", "Breads", 60.00, 500, "Artisan sourdough bread with a crispy crust."),
     ("Croissant", "Pastries", 30.00, 100, "Flaky and buttery croissant."),
-    ("Milk", "Dairy", 1000.00, 50, "Fresh milk (1 liter)"),
+    ("Milk", "Dairy", 1000, 50, "Fresh milk (1 liter)"),
     ("Yogurt", "Dairy", 150.00, 80, "Creamy yogurt (500 grams)."),
     ("Chocolate Cake", "Cakes", 300.00, 25, "Rich chocolate cake with chocolate frosting."),
     ("Strawberry Ice Cream", "Ice Cream", 60.00, 450, "Creamy strawberry ice cream made with real strawberries."),
@@ -134,11 +134,11 @@ def update_product(product_id, price, stock, description):
     cursor = connection.cursor()
     query = """
         UPDATE products
-        SET price = %s, stock = %s, description = %s
+        SET price = %s, stock = %s , description = %s
         WHERE product_id = %s
     """
     try:
-        cursor.execute(query, (price, stock, description, product_id))
+        cursor.execute(query, (price, 100 , description, product_id))
         connection.commit()
     except Error as e:
         print(f"Error: {e}")
@@ -147,3 +147,5 @@ def update_product(product_id, price, stock, description):
         cursor.close()
         connection.close()
     return True
+
+    
